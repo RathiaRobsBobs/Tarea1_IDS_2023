@@ -1,0 +1,66 @@
+//Problema de Codeforces A:
+
+#include <iostream>
+#include <cmath>
+#include <sstream>
+#include <vector>
+
+using namespace std;
+
+
+int main(){
+	int t, n;	
+	
+	cout<<"Enter the number of cases (1=<t=<100)."<<endl;
+	do{
+		fflush(stdin);
+		cin>>t;
+		if(t<1 || t>100){
+			cout<<"The number of cases must be between 1 and 100."<<endl;
+		}		
+	}while(t<1 || t>200);
+	
+	vector <long long int> array(t);
+	
+	for(int i=0; i<t; i++){
+		do{
+			fflush(stdin);
+			cin>>n;						
+		}while(n<3 || n>100);
+		
+		cin.ignore(); //Ignora el salto de linea
+	    string inputLine;
+        getline(std::cin, inputLine);
+
+        stringstream ss(inputLine);
+
+        vector<long long int> blackboard(n);
+
+        for (int j = 0; j < n; j++) {
+            ss >> blackboard[j];
+        }
+        
+		//calculo primigenio:
+		long long int num=0;
+		
+		for(int j=0; j<n; j++){
+			if(blackboard[j]<0){
+				num=blackboard[j];
+				break;
+			}else if(num<blackboard[j]){
+				num=blackboard[j];
+				
+			}
+		}
+		
+		array[i]=num;		
+		
+	}
+	
+	for(int i=0; i<t; i++){
+		cout<<array[i]<<endl;
+	}
+	
+	return 0;
+}
+
